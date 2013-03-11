@@ -11,16 +11,16 @@ class Person(models.Model):
     """
     
     # 1-1 mapping to users. maybe not needed?
-    user = models.OneToOneField(User)
+    # user = models.OneToOneField(User)
     
-    sAMAccountName = models.CharField(max_length=50)
-    mail = models.CharField(max_length=100)
-    userPrincipalName = models.CharField(max_length=100)
+    sAMAccountName = models.CharField(max_length=50,unique=True)
+    mail = models.CharField(max_length=100,unique=True)
+    userPrincipalName = models.CharField(max_length=100,unique=True)
     givenName = models.CharField(max_length=50)
     sn = models.CharField(max_length=50)
     displayName = models.CharField(max_length=50)
     telephoneNumber = models.CharField(max_length=50)
-    modified = models.DateTimeField('date modified') 
+    modified = models.DateTimeField(auto_now = True)
     
     def get_full_name(self):
             # The user is identified by their email address

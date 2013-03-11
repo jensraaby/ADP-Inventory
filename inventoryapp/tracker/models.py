@@ -1,10 +1,13 @@
 from django.db import models
 
+
+
 class DeviceManufacturer(models.Model):
     name = models.CharField(max_length=50)
-    added_date = models.DateTimeField('date added')
+    added_date = models.DateTimeField(auto_now_add = True)
     def __unicode__(self):
         return self.name
+   
     
 class DeviceModel(models.Model):
     """
@@ -12,9 +15,10 @@ class DeviceModel(models.Model):
     """
     model_name = models.CharField(max_length=50)
     manufacturer = models.ForeignKey(DeviceManufacturer)
-    added_date = models.DateTimeField('date added')
+    added_date = models.DateTimeField(auto_now_add = True)
     def __unicode__(self):
         return self.manufacturer.name + ' ' + self.model_name
+    
     
 class Device(models.Model):
     """
@@ -22,7 +26,7 @@ class Device(models.Model):
     """
     # give the device's serial number
     uuid = models.CharField(max_length=100)
-    added_date = models.DateTimeField('date added')
+    added_date = models.DateTimeField(auto_now_add = True)
     device_model = models.ForeignKey(DeviceModel)
     
     # we never create devices directly...
@@ -44,7 +48,7 @@ class MobileDevice(Device):
            
 class WorkstationDevice(Device):
     """
-    Workstation is a computer (mac or windows)
+    Workstation is a computer (Mac or Windows)
     """
     os = models.CharField(max_length=100)
     dns_name = models.CharField(max_length=100)
