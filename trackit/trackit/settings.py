@@ -1,4 +1,4 @@
-# Django settings for inventoryapp project.
+# Django settings for trackit project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -12,7 +12,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'inventoryapp',                      # Or path to database file if using sqlite3.
+        'NAME': 'trackit',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -83,7 +83,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'gr=rzraqp=1ng_t$rm^@us$0x5j^==g+(x=&##mm)wy5&bk6j&'
+SECRET_KEY = '#pkf@*^_5)kx^f^c18!jsmy++wdxkfp6@55b($-iuqu2x1-*8a'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -102,10 +102,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'inventoryapp.urls'
+ROOT_URLCONF = 'trackit.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'inventoryapp.wsgi.application'
+WSGI_APPLICATION = 'trackit.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -124,10 +124,9 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
-    'tracker',
-    'people',
+    'employees',
+    'devices',
 )
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
