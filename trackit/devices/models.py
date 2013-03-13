@@ -1,10 +1,11 @@
+from datetime import datetime
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from employees.models import Employee
     
 
-class MobileDevice(models.Model):
+class Mobile(models.Model):
     """
     Mobile is a phone, modem or anything with a sim-card
     """
@@ -15,12 +16,30 @@ class MobileDevice(models.Model):
     # TODO: make sure this is actually a string
     model_name = models.CharField(max_length=50)
     imei = models.CharField(max_length=50, unique=True, primary_key=True)
-    iccid = models.CharField(max_length=50, null=True)
+    iccid = models.CharField(max_length=50, null=True, blank=True)
     # TODO: maybe?
     uuid  = models.CharField(max_length=100)
     date_added = models.DateTimeField(auto_now_add=True)
     date_modified = models.DateTimeField(auto_now=True)
     
+    def register(self, who):
+        """ Sets this device to be owned by specified user from now on """
+        obj_type = ContentType.objects.get_for_model(self)
+        # find previous registrations
+        previous = DeviceRegistration.objects.filter(content_type__pk = obj_type.id,
+                                                     object_id = self.imei)
+                                                     
+        for p in previous:
+            # cancel all the previous registrations if not set!
+            if p.date_returned == None:
+                p.date_returned = datetime.now()
+                p.save()
+    
+        # create a new registration
+        reg = DeviceRegistration(device = self, user=who)
+        reg.save()
+        self.user = who
+        
     def __unicode__(self):
          return self.name
            
@@ -33,12 +52,13 @@ class DeviceRegistration(models.Model):
     device = generic.GenericForeignKey('content_type', 'object_id')
     user = models.ForeignKey(Employee, related_name="history")
     date_registered = models.DateTimeField(auto_now_add=True)
-    date_returned   = models.DateTimeField(null = True)
+    date_returned   = models.DateTimeField(blank=True, null = True)
     
-    
+    def __unicode__(self):
+        return self.content_type.model + ': ' + self.object_id + ' ' + self.user.sAMAccountName
 
            
-class WorkstationDevice(models.Model):
+class Workstation(models.Model):
     """
     Workstation is a computer (Mac or Windows)
     """
@@ -56,6 +76,25 @@ class WorkstationDevice(models.Model):
     date_added = models.DateTimeField(auto_now_add = True)
     date_modified = models.DateTimeField(auto_now = True)
     
+    #TODO refactor so no reuse with Mobile method
+    def register(self, who):
+        """ Sets this device to be owned by specified user from now on """
+        obj_type = ContentType.objects.get_for_model(self)
+        # find previous registrations
+        previous = DeviceRegistration.objects.filter(content_type__pk = obj_type.id,
+                                                     object_id = self.uuid)
+                                                     
+        for p in previous:
+            # cancel all the previous registrations if not set!
+            if p.date_returned == None:
+                p.date_returned = datetime.now()
+                p.save()
+    
+        # create a new registration
+        reg = DeviceRegistration(device = self, user=who)
+        reg.save()
+        self.user = who
+        
     def __unicode__(self):
         return self.dns_name
         
