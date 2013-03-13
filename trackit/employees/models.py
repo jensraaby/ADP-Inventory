@@ -20,9 +20,11 @@ class Employee(models.Model):
     telephoneNumber   = models.CharField(max_length=50)
     modified          = models.DateTimeField(auto_now = True)
     
-    
-    
     def get_full_name(self):
-            # The user is identified by their email address
-            return self.givenName + ' ' + self.sn
+        return self.givenName + ' ' + self.sn
+            
+    def __unicode__(self):
+        return self.get_full_name()
+    
+    
 

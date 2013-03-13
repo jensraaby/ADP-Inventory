@@ -34,6 +34,8 @@ class DeviceRegistration(models.Model):
     user = models.ForeignKey(Employee, related_name="history")
     date_registered = models.DateTimeField(auto_now_add=True)
     date_returned   = models.DateTimeField(null = True)
+    
+    
 
            
 class WorkstationDevice(models.Model):
