@@ -31,7 +31,7 @@ class Mobile(models.Model):
                                                      
         for p in previous:
             # cancel all the previous registrations if not set!
-            if p.date_returned == None:
+            if p.date_returned is None:
                 p.date_returned = datetime.now()
                 p.save()
     
@@ -86,7 +86,7 @@ class Workstation(models.Model):
                                                      
         for p in previous:
             # cancel all the previous registrations if not set!
-            if p.date_returned == None:
+            if p.date_returned is None:
                 p.date_returned = datetime.now()
                 p.save()
     
