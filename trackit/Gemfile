@@ -39,4 +39,6 @@ gem 'debugger'
 
 # Custom gems
 # gem 'devise'
+# gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
 gem 'bootstrap-sass'
+gem 'simple_form'
