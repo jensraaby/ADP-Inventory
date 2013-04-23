@@ -19,8 +19,9 @@ Installation
 1. Clone the repository
 2. Install bundler (cd into the repository, run 'gem install bundler')
 3. Install the bundle (cd into the trackit folder, run 'bundle install')
-4. Run the development server: 'rails server'
-5. Open http://localhost:3000/
+4. run 'rake db:create && rake db:migrate'
+5. Run the development server: 'rails server'
+6. Open http://localhost:3000/
 
 Development
 ===========
