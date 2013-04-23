@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  device_type: MyString
+  device_id: 1
+  active: false
+
+two:
+  device_type: MyString
+  device_id: 1
+  active: false

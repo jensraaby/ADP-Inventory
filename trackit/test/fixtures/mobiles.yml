@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  serial: MyString
+  name: MyString
+  model: MyString
+  OS: MyString
+  IMEI: MyString
+  ICCID: MyString
+  information: MyText
+
+two:
+  serial: MyString
+  name: MyString
+  model: MyString
+  OS: MyString
+  IMEI: MyString
+  ICCID: MyString
+  information: MyText

@@ -42,3 +42,5 @@ gem 'debugger'
 # gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
 gem 'bootstrap-sass'
 gem 'simple_form'
+gem 'paper_trail', '~> 2'
+
