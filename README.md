@@ -3,8 +3,11 @@ ADP-Inventory
 
 IT inventory tracker. 
 
-The basic idea is to maintain a list of all devices and users in our organisation. 
-The Rails app provieds data persistence with an SQL database, a web interface (using plain old HTML with Bootstrap CSS at present) and basic data export.
+The basic idea is to maintain a database of all devices and users in our organisation.
+The Rails app provides data persistence with an SQL database, a web interface (using plain old HTML with Bootstrap CSS at present) and basic data export.
+
+Client scripts will populate the system with data for every Windows PC and Mac. 
+Modems and Android phones will be manually entered, and Apple iOS devices will be imported from Profile Manager.
 
 Prerequisites
 ============
