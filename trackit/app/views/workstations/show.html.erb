@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+<h2>Workstation details: <%= @workstation.name %></h2>
+
+
+<h3>Registration history</h3>
+<table class="table">
+    <tr>
+        <th>User</th>
+        <th>Start date</th>
+    </tr>
+<% @workstation.registrations.each do |reg| %>
+
+ 
+    <tr>
+        <td><%= reg.user.sAMAccountName  %>
+        </td>
+        <td><%= reg.created_at %>
+        </td>
+    </tr>
+
+<% end %>
+</table>
+
+
+<%= link_to 'Edit', edit_workstation_path(@workstation) %> |
+<%= link_to 'Back', workstations_path %>

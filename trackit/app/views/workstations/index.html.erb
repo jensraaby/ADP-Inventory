@@ -1,0 +1,27 @@
+<h1>Listing workstations</h1>
+
+<table class="table">
+  <tr>
+    <th>Name</th>
+    <th>OS</th>
+    <th>Serial</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @workstations.each do |workstation| %>
+  <tr>
+    <td><%= link_to workstation.name, workstation %></td>
+    <td><%= workstation.OS %></td>
+    <td><%= workstation.serial %></td>
+    <td><%= link_to 'Show', workstation %></td>
+    <td><%= link_to 'Edit', edit_workstation_path(workstation) %></td>
+    <td><%= link_to 'Destroy', workstation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Workstation', new_workstation_path %>
