@@ -32,7 +32,7 @@ gem 'jquery-rails'
 # gem 'unicorn'
 
 # Deploy with Capistrano
-# gem 'capistrano'
+gem 'capistrano'
 
 # To use debugger
 gem 'debugger'
@@ -40,7 +40,17 @@ gem 'debugger'
 # Custom gems
 # gem 'devise'
 # gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
+
+# sass version of Twitter bootstrap:
 gem 'bootstrap-sass'
+
+# nice forms
 gem 'simple_form'
+
+# Versioning/auditing for models
 gem 'paper_trail', '~> 2'
+
+# Asynchronous tasks
+gem 'sidekiq'
+gem 'clockwork'
 
