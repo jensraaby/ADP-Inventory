@@ -13,25 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130423080039) do
 
-  create_table "i_devices", :force => true do |t|
-    t.string   "serial"
-    t.string   "name"
-    t.string   "imei"
-    t.string   "iccid"
-    t.string   "phone_number"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
-
-  create_table "macs", :force => true do |t|
-    t.string   "serial"
-    t.string   "name"
-    t.string   "OSVersion"
-    t.string   "model"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "mobiles", :force => true do |t|
     t.string   "serial"
     t.string   "name"
@@ -43,15 +24,6 @@ ActiveRecord::Schema.define(:version => 20130423080039) do
     t.text     "information"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
-  end
-
-  create_table "pcs", :force => true do |t|
-    t.string   "serial"
-    t.string   "name"
-    t.string   "OS"
-    t.string   "model"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "registrations", :force => true do |t|
