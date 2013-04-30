@@ -9,7 +9,9 @@ class ImportldWorker
     # This is just to give a nice data structure (a hash of )
     rows.each_with_index.map do |row, index|
       # todo - rearrange the hash so it is sorted - do we need the row index?
-      Hash[headers.each_with_index.map { |header, pos| [header, row[pos] ]}].merge('row' => index+2)
+      Hash[headers.each_with_index.map { |header, pos| 
+        [header, row[pos] ]}
+      ].merge('row' => index+2)
     end
   end
   
