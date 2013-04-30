@@ -1,7 +1,26 @@
 Trackit::Application.routes.draw do
+  
   get "home/index"
-  resources :workstations
+  
+  resources :workstations do
+    collection do
+      get 'import'
+      post 'import'
+    end
+     # match 'import' => 'workstations#import'
+  end
+ 
+  
+  resources :registrations
+  
+  resources :users  do 
+    resources :registrations
+  end
+    
 
+  
+  
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

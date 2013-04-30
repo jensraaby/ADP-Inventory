@@ -1,12 +1,17 @@
 <p id="notice"><%= notice %></p>
 <h2>Workstation details: <%= @workstation.name %></h2>
 
-
-<h3>Registration history</h3>
+<ul>
+    <li>Serial: <%= @workstation.serial %></li>
+    <li>OS: <%= @workstation.OS %></li>
+    <li>Model: <%= @workstation.model %> (find more)</li>
+    <li>Last seen: <%= @workstation.last_seen %></li>
+</ul>
+<h4>Registration history</h4>
 <table class="table">
     <tr>
         <th>User</th>
-        <th>Start date</th>
+        <th>Start time</th>
     </tr>
 <% @workstation.registrations.each do |reg| %>
 
@@ -21,6 +26,24 @@
 <% end %>
 </table>
 
+<h4>Previous versions</h4>
+<p>If this workstation has been changed, the earlier versions are saved. You can view the events affecting this machine below:</p>
+<table class="table">
+    <tr>
+
+        <th>Date</th>
+        <th>Event</th>
+    </tr>
+<% @versions.each do |ver| %> 
+    <tr>
+        <td><%= ver.created_at %>
+        </td>
+        <td><%= ver.event %>
+        </td>
+    </tr>
+
+<% end %>
+</table>
 
 <%= link_to 'Edit', edit_workstation_path(@workstation) %> |
 <%= link_to 'Back', workstations_path %>

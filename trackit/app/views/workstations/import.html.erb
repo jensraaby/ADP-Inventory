@@ -1,0 +1,8 @@
+<h3>Import from CSV</h3>
+<%= @ld_import.errors.full_messages.to_sentence  %>
+<%= simple_form_for :import, :url => '/workstations/import', :html => {:multipart => true}, :class => "form-horizontal" do |f| %>
+  <%= f.error_notification %>
+  <%= f.full_error :spreadsheet %>
+  <%= f.file_field :spreadsheet %>
+ <%= f.button :submit, label: "Submit" %>
+<% end %>

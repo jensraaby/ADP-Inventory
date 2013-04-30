@@ -1,0 +1,25 @@
+<h1>Listing registrations</h1>
+
+<table class="table table-stripe">
+  <tr>
+    <th>User</th>
+    <th>Device</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @registrations.each do |registration| %>
+  <tr>
+    <td><%= link_to "#{registration.user.sAMAccountName}", registration.user %></td>
+    <td><%= link_to "#{registration.device.model}", registration.device %></td>
+    <td><%= link_to 'Show', registration, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_registration_path(registration), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', registration, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Registration', new_registration_path %>

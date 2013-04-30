@@ -1,8 +1,17 @@
 <h1>Listing workstations</h1>
 
-<table class="table">
+<% if @filters.keys.length > 0 %>
+<h5>Results filtered:</h5>
+<% @filters.each do |parm,val| %>
+<%= "#{parm.capitalize}: #{val}" %>
+<br/>
+<% end %>
+<p><%= link_to 'Show all workstations', workstations_path, :class => "btn" %></p>
+<% end %>
+<table class="table table-stripe">
   <tr>
     <th>Name</th>
+    <th>Model</th>
     <th>OS</th>
     <th>Serial</th>
     <th></th>
@@ -13,15 +22,17 @@
 <% @workstations.each do |workstation| %>
   <tr>
     <td><%= link_to workstation.name, workstation %></td>
-    <td><%= workstation.OS %></td>
+    <td><%= workstation.model %> <%= link_to "Filter", workstations_path(:model => workstation.model), :class => "btn btn-small" %></td>
+    <td><%= workstation.OS %> <%= link_to "Filter", workstations_path(:OS => workstation.OS), :class => "btn btn-small" %></td>
     <td><%= workstation.serial %></td>
-    <td><%= link_to 'Show', workstation %></td>
-    <td><%= link_to 'Edit', edit_workstation_path(workstation) %></td>
-    <td><%= link_to 'Destroy', workstation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', workstation, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_workstation_path(workstation), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', workstation, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Workstation', new_workstation_path %>
+<%= link_to 'New Workstation', new_workstation_path, :class => 'btn' %>
+<%= link_to 'Import LanDesk CSV', import_workstations_path, :class => 'btn' %>

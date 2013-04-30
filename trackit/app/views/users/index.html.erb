@@ -1,0 +1,29 @@
+<h1>Listing users</h1>
+
+<table class="table table-stripe">
+  <tr>
+    <th>Username</th>
+    <th>Phone</th>
+    <th>Last changed</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.sAMAccountName %></td>
+    <td><%= user.telephoneNumber %></td>
+    <td><%= user.updated_at %></td>
+    <td><%= link_to 'View devices', user_registrations_path(user), :class => "btn btn-mini"  %></td>
+    <td><%= link_to 'Show', user, :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Edit', edit_user_path(user), :class => 'btn btn-mini' %></td>
+    <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => 'btn btn-mini btn-danger' %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_user_path %>
