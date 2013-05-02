@@ -1,34 +1,35 @@
 class LdImport
   require 'csv'
   
-  # table-less model - just use a few helpers
+  # table-less model - just use a few helpers needed for validations:
   
   include ActiveModel::Validations
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
+  # This lets us access the spreadsheet field as with an ActiveRecord model
   attr_accessor :spreadsheet
   
   validates_presence_of :spreadsheet 
   validate :process_file #custom validator
   
   
-  
+  # called when creating an instance with input parameters
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
     end
   end
   
+  # indicates that this object is not saved anywhere
   def persisted?
     false
   end
   
   
-  
+  # Custom validation method. Adds errors with helpful text
   def process_file
     unless spreadsheet.blank?
-      # process the input
       
       if spreadsheet.size == 0
         errors.add(:spreadsheet, "was empty!")
@@ -46,7 +47,7 @@ class LdImport
     else
       errors.add(:spreadsheet, "must be supplied")
     end
-    debugger
+    
   rescue CSV::MalformedCSVError
     errors.add(:spreadsheet, "was an invalid CSV file - check it can open with Excel or similar")
   end
