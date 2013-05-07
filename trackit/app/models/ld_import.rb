@@ -30,7 +30,7 @@ class LdImport
   # Custom validation method. Adds errors with helpful text
   def process_file
     unless spreadsheet.blank?
-      
+q      
       if spreadsheet.size == 0
         errors.add(:spreadsheet, "was empty!")
       else
