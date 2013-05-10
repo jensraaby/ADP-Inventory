@@ -40,11 +40,7 @@ gem 'debugger'
 # Custom gems
 # gem 'devise'
 # gem "devise_ldap_authenticatable", :git => "git://github.com/cschiewek/devise_ldap_authenticatable.git"
-
-# sass version of Twitter bootstrap:
-gem 'bootstrap-sass'
-
-# nice forms
+gem 'bootstrap-sass', '~> 2.3.1.0'
 gem 'simple_form'
 
 # Versioning/auditing for models
