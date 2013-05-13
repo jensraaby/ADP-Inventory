@@ -14,7 +14,9 @@ role :app, hostname                          # This may be the same as your `Web
 role :db,  hostname, :primary => true # This is where Rails migrations will run
 # role :db,  "your slave db-server here"
 
-set :rails_env, :production
+default_run_options[:pty] = true
+
+set :rails_env, :test 
 set :branch, 'master'
 
 # if you want to clean up old releases on each deploy uncomment this:
