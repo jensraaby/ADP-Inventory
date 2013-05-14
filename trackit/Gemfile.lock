@@ -148,7 +148,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass
+  bootstrap-sass (~> 2.3.1.0)
   capistrano
   clockwork
   coffee-rails (~> 3.2.1)
