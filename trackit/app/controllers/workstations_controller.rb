@@ -99,26 +99,6 @@ class WorkstationsController < ApplicationController
   end
   
   def import
-    #TODO refactor to own controller!
-    # this is both a GET and POST action, so handle GET first
-    @ps = params
-    if @ps['import'].nil? # maybe break out into a separate action
     
-      respond_to do |format|
-        format.html { render action: "import" }
-      end
-      
-    else
-      # POST received!
-      # we get the file and pass it to a model for validation
-      @ld_import = LdImport.new(params.fetch(:import))
-      
-      if @ld_import.valid?
-        flash[:notice] = "done!"
-      else 
-        debugger
-        render action: "import"
-      end
-    end
   end
 end

@@ -27,17 +27,60 @@ class LdImport
   end
   
   
+  def machine_hash(headers,rows)
+    # This is just to give a nice data structure (a hash of )
+    rows.each_with_index.map do |row, index|
+      # todo - rearrange the hash so it is sorted - do we need the row index?
+      Hash[headers.each_with_index.map { |header, pos| 
+        [header, row[pos] ]}
+      ].merge('row' => index+2)
+    end
+  end
+  
+  def do_it(spreadsheet_path)
+    if File.size(spreadsheet_path) == 0 or !FileTest.exist?(spreadsheet_path)
+      logger.error("ImportLDWorker: The supplied file was empty or does not exist") 
+    else
+      
+      puts spreadsheet_path
+      # run it all in a transaction!
+      # either all or nothing!
+      ActiveRecord::Base.transaction do
+        logger.info("Beginning Import LD operation")
+        
+        # Just going to make an array of arrays from the CSV
+        # The first row is assumed to be the header row with field names
+        data = CSV.read(spreadsheet_path)
+        headers = data.shift
+        
+          puts machine_hash(headers,data)
+          
+          
+          
+        data.each do  |lditem|
+          # we have an array representing an item
+           
+          
+          
+        end
+      end
+      
+    end
+  end
+  
+  
   # Custom validation method. Adds errors with helpful text
   def process_file
     unless spreadsheet.blank?
-q      
+     
       if spreadsheet.size == 0
         errors.add(:spreadsheet, "was empty!")
       else
         if /^.*\.csv$/.match(spreadsheet.original_filename)
-          logger.info("Sending CSV data to asynchronous task")
+          # logger.info("Sending CSV data to asynchronous task")
           # ImportldWorker.perform_async(CSV.parse(spreadsheet.read))
-          
+          errors.add(:spreadsheet,"temporary error")
+          do_it(spreadsheet.original_filename)
         else
           
           errors.add(:spreadsheet, "The supplied file was not a .CSV file")

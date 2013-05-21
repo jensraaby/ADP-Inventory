@@ -1,0 +1,11 @@
+<%= simple_form_for :ld_import, :html => {:multipart => true}, :class => "form-horizontal" do |f| %>
+  <%= f.error_notification %>
+  <%= f.full_error :spreadsheet %>
+  <div class="form-inputs">
+  <%= f.file_field :spreadsheet %>
+</div>
+
+<div class="form-actions">
+ <%= f.button :submit, label: "Submit" %>
+ </div>
+<% end %>

@@ -12,6 +12,7 @@ Trackit::Application.routes.draw do
  
   
   resources :registrations
+  resources :ld_import 
   
   resources :users  do 
     resources :registrations
