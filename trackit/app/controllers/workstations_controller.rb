@@ -99,6 +99,7 @@ class WorkstationsController < ApplicationController
   end
   
   def import
-    
+    Workstation.import(params[:file])
+    redirect_to root_url, notice: "Workstations imported"
   end
 end

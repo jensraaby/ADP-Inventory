@@ -35,4 +35,8 @@
 <br />
 
 <%= link_to 'New Workstation', new_workstation_path, :class => 'btn' %>
-<%= link_to 'Import LanDesk CSV', import_workstations_path, :class => 'btn' %>
+
+<%= form_tag import_workstations_path, multipart: true do %>
+    <%= file_field_tag :file %>
+    <%= submit_tag "Import" %>
+<% end #link_to 'Import LanDesk CSV', import_workstations_path, :class => 'btn' %>

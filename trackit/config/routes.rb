@@ -5,7 +5,7 @@ Trackit::Application.routes.draw do
   resources :workstations do
     collection do
       get 'import'
-      post 'import'
+      post :import
     end
      # match 'import' => 'workstations#import'
   end
