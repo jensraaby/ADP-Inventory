@@ -1,19 +1,12 @@
 <h1>Listing workstations</h1>
 
-<% if @filters.keys.length > 0 %>
-<h5>Results filtered:</h5>
-<% @filters.each do |parm,val| %>
-<%= "#{parm.capitalize}: #{val}" %>
-<br/>
-<% end %>
-<p><%= link_to 'Show all workstations', workstations_path, :class => "btn" %></p>
-<% end %>
+
 <table class="table table-stripe table-bordered">
   <tr>
-    <th>Name</th>
-    <th>Model</th>
-    <th>OS</th>
-    <th>Serial</th>
+    <th><%= sortable "name" %></th>
+    <th><%= sortable "model" %></th>
+    <th><%= sortable "OS" %></th>
+    <th><%= sortable "serial" %></th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,8 +15,8 @@
 <% @workstations.each do |workstation| %>
   <tr>
     <td><%= link_to workstation.name, workstation %></td>
-    <td><%= workstation.model %> <%= link_to "Filter", workstations_path(:model => workstation.model), :class => "btn btn-small" %></td>
-    <td><%= workstation.OS %> <%= link_to "Filter", workstations_path(:OS => workstation.OS), :class => "btn btn-small" %></td>
+    <td><%= workstation.model %></td>
+    <td><%= workstation.OS %></td>
     <td><%= workstation.serial %></td>
     <td><%= link_to 'Show', workstation, :class => 'btn btn-mini' %></td>
     <td><%= link_to 'Edit', edit_workstation_path(workstation), :class => 'btn btn-mini' %></td>
@@ -39,4 +32,4 @@
 <%= form_tag import_workstations_path, multipart: true do %>
     <%= file_field_tag :file %>
     <%= submit_tag "Import" %>
-<% end #link_to 'Import LanDesk CSV', import_workstations_path, :class => 'btn' %>
+<% end %>

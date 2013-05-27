@@ -31,14 +31,14 @@ class Workstation < ActiveRecord::Base
     # For some reason I get a quote error for the first line
     lines[0] = lines[0].delete('"')
     
-    # Now swap the column headers for my mappings
+    # Now swap the column headers for field names
     mappings = {}
     mappings['Device Name'] = "name"
     mappings['OS Name'] = "OS"
     mappings['Board Name'] = "model"
     mappings['Serial Number'] = "serial"
     
-    
+    # This is a simple substitution, but not the nicest way of doing it
     headers = lines.first
     mappings.each do |orig,rep|
       headers.gsub!(/#{orig}/, rep)
@@ -46,7 +46,7 @@ class Workstation < ActiveRecord::Base
     
     lines[0] = headers
     
-    # This gives us a hash from column name to data for each row
+    # This parses the array of strings and gives us a hash from column name to data for each row
     data = CSV.parse(lines.join, headers: true)
     
   
@@ -61,12 +61,14 @@ class Workstation < ActiveRecord::Base
         #TODO: work out why I can't just query the string
         ws.name= machine[machine.to_hash.keys.first]
         
+        # should do some smart look up of the users
         # ws.primary_user_id
         ws.save!
       end
 
     end
   rescue CSV::MalformedCSVError
+    # after all the manual work I've done above, this shouldn't really happen unless the user uploads a different type of file
     debugger
   end
 end

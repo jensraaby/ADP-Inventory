@@ -1,22 +1,11 @@
 class WorkstationsController < ApplicationController
+  helper_method :sort_column, :sort_direction
+  
   # GET /workstations
   # GET /workstations.json
   def index
-   
-   # this will be a hash of params and their values
-   # e.g. model => MacBookPro4,1
-    @filters = params.except("action","controller")
-    
-   
-    # there must be a nicer way to do this?
-    if @filters.keys.include?("model")
-      @workstations = Workstation.where("model = ?", @filters.fetch("model"))
-      
-    elsif @filters.keys.include?("OS")
-      @workstations = Workstation.where("OS = ?", @filters.fetch("OS"))
-    else
-      @workstations = Workstation.all
-    end
+
+    @workstations = Workstation.order(sort_column + " " + sort_direction)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -98,8 +87,19 @@ class WorkstationsController < ApplicationController
     end
   end
   
+  # POST /workstations/import
   def import
     Workstation.import(params[:file])
-    redirect_to root_url, notice: "Workstations imported"
+    redirect_to workstations_url, notice: "Workstations imported"
+  end
+  
+  private
+  
+  def sort_column
+    Workstation.column_names.include?(params[:sort]) ? params[:sort] : "name"
+  end
+  
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
 end
