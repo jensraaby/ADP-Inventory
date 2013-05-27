@@ -1,2 +1,1 @@
-cd trackit
-sidekiq
+bundle exec sidekiq
